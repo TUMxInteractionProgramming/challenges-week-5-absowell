@@ -5,8 +5,8 @@ console.log("App is alive");
 /** #7 #whereami #var create global variable */
 var currentChannel;
 
-/** #7 #star #fix: We simply initialize it with the channel selected by default - sevencontinents */
-currentChannel = sevencontinents;
+/** #7 #star #fix: We simply initialize it with the channel selected by default - art */
+currentChannel = art;
 
 /** #whereami #loc: Store my current (sender) location
  */
@@ -140,7 +140,7 @@ function createMessageElement(messageObject) {
         messageObject.createdOn.toLocaleString() +
         '<em>' + expiresIn+ ' min. left</em></h3>' +
         '<p>' + messageObject.text + '</p>' +
-        '<button>+5 min.</button>' +
+        '<button class="accent">+5 min.</button>' +
         '</div>';
 }
 
@@ -150,11 +150,11 @@ function listChannels() {
     //$('#channels ul').append("<li>New Channel</li>")
 
     // #8 #channels make five #new channels
-    $('#channels ul').append(createChannelElement(yummy));
-    $('#channels ul').append(createChannelElement(sevencontinents));
-    $('#channels ul').append(createChannelElement(killerapp));
-    $('#channels ul').append(createChannelElement(firstpersononmars));
-    $('#channels ul').append(createChannelElement(octoberfest));
+    $('#channels ul').append(createChannelElement(science));
+    $('#channels ul').append(createChannelElement(art));
+    $('#channels ul').append(createChannelElement(literature));
+    $('#channels ul').append(createChannelElement(music));
+    $('#channels ul').append(createChannelElement(histor));
 }
 
 /**
@@ -174,7 +174,7 @@ function createChannelElement(channelObject) {
      */
 
     // create a channel
-    var channel = $('<li>').text(channelObject.name);
+    var channel = $('<li>').click(function(){switchChannel(channelObject)}).text(channelObject.name);
 
     // create and append channel meta
     var meta = $('<span>').addClass('channel-meta').appendTo(channel);
