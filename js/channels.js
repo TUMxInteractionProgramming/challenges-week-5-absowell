@@ -46,3 +46,5 @@ var histor = {
     expiresIn: 60,
     messageCount: 321
 };
+
+var channels = [science, art, literature, music, histor]

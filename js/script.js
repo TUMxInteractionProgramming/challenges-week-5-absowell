@@ -79,7 +79,9 @@ function selectTab(tabId) {
  * toggle (show/hide) the emojis menu
  */
 function toggleEmojis() {
-    $('#emojis').toggle(); // #toggle
+    $('#emojis').toggle();
+    var emojis = require('emojis-list')
+    console.log(emojis[0])
 }
 
 /**
@@ -145,16 +147,20 @@ function createMessageElement(messageObject) {
 }
 
 
-function listChannels() {
-    // #8 #channel #onload
+function listChannels(criterion) {
     //$('#channels ul').append("<li>New Channel</li>")
 
-    // #8 #channels make five #new channels
-    $('#channels ul').append(createChannelElement(science));
+   /** Replacing this with a loop
+   $('#channels ul').append(createChannelElement(science));
     $('#channels ul').append(createChannelElement(art));
     $('#channels ul').append(createChannelElement(literature));
     $('#channels ul').append(createChannelElement(music));
-    $('#channels ul').append(createChannelElement(histor));
+    $('#channels ul').append(createChannelElement(histor)); */
+    $('#channels ul').empty();
+    var channelsSort = channels.sort(criterion);
+    for (i = 0; i < channels.length; i++) { 
+    $('#channels ul').append(createChannelElement(channelsSort[i]))
+    }
 }
 
 /**
@@ -192,4 +198,16 @@ function createChannelElement(channelObject) {
 
     // return the complete channel
     return channel;
+}
+
+function compareNew(a, b) {
+    return (b.createdOn - a.createdOn)
+}
+
+function compareTrending(a, b) {
+    return (b.messageCount - a.messageCount)
+}
+
+function compareFavorites(a, b) {
+    return (b.starred - a.starred)
 }

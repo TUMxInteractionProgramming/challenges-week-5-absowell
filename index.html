@@ -16,6 +16,8 @@
     <!-- #7 #icns #fa embed font awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
+    <script src="js/emojis-list.js" type="text/javascript" charset="utf-8"></script>
+    
     <!-- #7 #chlob #lnk embed external JavaScript file for channel objects -->
     <script src="js/channels.js"></script>
 
@@ -25,7 +27,7 @@
 </head>
 
 <!-- #8 #channel #onload all channels when the body has loaded -->
-<body onload="listChannels()">
+<body onload="listChannels(compareNew)">
 
 <!-- channel area -->
 <div id="channels" class="md-whiteframe-16dp">
@@ -92,17 +94,17 @@
 
     <!-- TAB BAR -->
     <div id="tab-bar" class="md-whiteframe-4dp">
-        <button class="selected" id="tab-new" onclick="selectTab('#tab-new')">
+        <button class="selected" id="tab-new" onclick="selectTab('#tab-new'); listChannels(compareNew)">
             <!-- #7 #icns #tab replacing icons -->
             <i class="fa fa-lightbulb-o"></i>
             New
         </button>
-        <button id="tab-trending" onclick="selectTab('#tab-trending')">
+        <button id="tab-trending" onclick="selectTab('#tab-trending'); listChannels(compareTrending)">
             <!-- #7 #icns #tab replacing icons -->
             <i class="fa fa-fire"></i>
             Trending
         </button>
-        <button id="tab-favorites" onclick="selectTab('#tab-favorites')">
+        <button id="tab-favorites" onclick="selectTab('#tab-favorites'); listChannels(compareFavorites)">
             <!-- #7 #icns #tab replacing icons -->
             <i class="fa fa-star"></i>
             Favorites
