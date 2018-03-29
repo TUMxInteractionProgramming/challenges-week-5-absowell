@@ -6,7 +6,8 @@ var science = {
     createdBy: "minus.plus.science",
     starred: false,
     expiresIn: 100,
-    messageCount: 999
+    messageCount: 999,
+    messages: []
 };
 
 /** #7 #chlob #fve: the other channels */
@@ -17,7 +18,8 @@ var art = {
     createdBy: "cheeses.yard.applies",
     starred: true,
     expiresIn: 60,
-    messageCount: 5
+    messageCount: 5,
+    messages: []
 };
 
 var literature = {
@@ -26,7 +28,8 @@ var literature = {
     createdBy: "lodge.bits.fake",
     starred: false,
     expiresIn: 1,
-    messageCount: 10351
+    messageCount: 10351,
+    messages: []
 };
 
 var music = {
@@ -35,7 +38,8 @@ var music = {
     createdBy: "snipped.atom.grid",
     starred: true,
     expiresIn: 30003,
-    messageCount: 2424
+    messageCount: 2424,
+    messages: []
 };
 
 var histor = {
@@ -44,7 +48,8 @@ var histor = {
     createdBy: "vocally.clearly.crawled",
     starred: false,
     expiresIn: 60,
-    messageCount: 321
+    messageCount: 321,
+    messages: []
 };
 
 var channels = [science, art, literature, music, histor]

@@ -192,6 +192,10 @@ li.selected {
     line-height: 56px;
 }
 
+.fa-plus {
+    margin: auto;
+}
+
 /* TAB BAR */
 
 #tab-bar, #chat-bar {

@@ -105,10 +105,12 @@ function sendMessage() {
     // #8 Create a new #message to #send and log it.
     //var message = new Message("Hello chatter");
 
+    var messageValue = $('#message').val();
+    if (messageValue.length > 0) {
     // #8 let's now use the #real message #input
     var message = new Message($('#message').val());
     console.log("New message:", message);
-
+    
     // #8 nicer #message #append with jQuery:
     $('#messages').append(createMessageElement(message));
 
@@ -118,6 +120,12 @@ function sendMessage() {
 
     // #8 #clear the #message input
     $('#message').val('');
+    
+    var channelMessages = currentChannel.messages;
+    channelMessages.push(createMessageElement(message));
+        
+    currentChannel.messageCount = currentChannel.messageCount + 1
+    }
 }
 
 /**
