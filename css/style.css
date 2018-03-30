@@ -109,12 +109,32 @@ h1 a {
     color: white;
 }
 
-h1 i {
+#channel-star {
     /* #7 #icns #str  */
     position:absolute;
     right: 16px;
     /* #7 #icns #small adjust icon size */
     font-size:24px;
+}
+
+h1 input {
+    display: none;
+    position: absolute;
+    top: 15px;
+    width: calc(100% - 120px);
+    font-size: 20px;
+    flex-grow: 1;
+    height: 30px;
+    border-radius: 4px;
+}
+
+h1 button {
+    position:absolute;
+    top: 7px;
+    right: 0px;
+    display: none;
+    margin-left: 16px;
+    flex-grow: 0;
 }
 
 /* CHANNELS LIST */
@@ -273,6 +293,10 @@ li.selected {
     border: none;
     /* alignment */
     flex-grow: 1;
+}
+
+#create-button {
+    display: none;
 }
 
 /* MESSAGES */

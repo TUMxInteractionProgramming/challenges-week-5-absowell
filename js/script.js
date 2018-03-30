@@ -48,6 +48,8 @@ function switchChannel(channelObject) {
 
     /* #7 #whereami #var store selected channel in global variable */
     currentChannel = channelObject;
+    
+    abortButton()
 }
 
 /* liking a channel on #click */
@@ -121,9 +123,11 @@ function sendMessage() {
     // #8 #clear the #message input
     $('#message').val('');
     
+    // append new message to current channel messages array
     var channelMessages = currentChannel.messages;
-    channelMessages.push(createMessageElement(message));
-        
+    channelMessages.push(message);
+    
+    // add 1 to new channel message count
     currentChannel.messageCount = currentChannel.messageCount + 1
     }
 }
@@ -206,14 +210,76 @@ function createChannelElement(channelObject) {
     return channel;
 }
 
+//compares channel array items and returns newest first 
 function compareNew(a, b) {
     return (b.createdOn - a.createdOn)
 }
 
+//compares channel array items and returns highest message count first
 function compareTrending(a, b) {
     return (b.messageCount - a.messageCount)
 }
 
+//compares channel array items and returns starred first
 function compareFavorites(a, b) {
     return (b.starred - a.starred)
+} 
+
+//opens creation mode
+function clickFAB() {
+    $('#messages').empty();
+    $('#channel-name, #channel-location, #channel-star, #arrow-button').hide();
+    $('h1 input, h1 button, #create-button').show();
+    }
+
+//to close the creation mode view
+function abortButton () {
+    $('h1 input, h1 button, #create-button').hide();
+    $('#channel-name, #channel-location, #channel-star, #arrow-button').show();
 }
+
+//constructor function to create new channels
+function Channel(text) {
+    this.name = text;
+    this.createdOn = new Date();
+    this.createdBy = currentLocation.what3words;
+    this.starred = false;
+    this.expiresIn = 100;
+    this.messageCount = 0;
+    this.messages = [];
+}
+
+function createButton() {
+    var messageValue = $('#message').val();
+    var channelValue = $('#input-channel').val();
+    //only create the message if both message text and channel name are not blank, and channel name starts with # and has no spaces
+    if (messageValue.length > 0 && channelValue.length > 0 && channelValue[0] == '#' && channelValue.indexOf(" ") < 0) {
+
+    //create Channel
+    var newChannel = new Channel(channelValue);
+    channels.push(newChannel)
+        
+    //createMessage    
+    var newMessage = new Message($('#message').val());
+    console.log("New message:", newMessage);
+        
+    $('#messages').append(createMessageElement(newMessage));
+    $('#messages').scrollTop($('#messages').prop('scrollHeight'));
+
+    // #8 #clear the #message input
+    $('#message').val('');
+    
+    //append new message to new channel messages array
+    var channelMessages = newChannel.messages;
+    channelMessages.push(newMessage);
+    
+    //add 1 to new channel message count
+    newChannel.messageCount = newChannel.messageCount + 1
+        
+    //call listChannels to re-list the channels
+    listChannels(compareNew)
+    //call switchChannels to highlight the new channel and close creation mode
+    switchChannel(newChannel) 
+    }
+}
+

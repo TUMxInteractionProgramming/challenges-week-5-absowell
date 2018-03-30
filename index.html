@@ -90,7 +90,7 @@
         -->
     </ul>
       
-    <span class="dot md-whiteframe-6dp"><i class="fa fa-plus"></i></span>
+    <span class="dot md-whiteframe-6dp" onclick="clickFAB()"><i class="fa fa-plus"></i></span>
 
     <!-- TAB BAR -->
     <div id="tab-bar" class="md-whiteframe-4dp">
@@ -115,11 +115,13 @@
 <div id="chat">
 
     <!-- APP BAR for CHANNEL TITLE -->
-    <h1  class="md-whiteframe-4dp">
+    <h1  class="md-whiteframe-4dp" id="bar-channel">
+        <input type="text" id="input-channel" placeholder="Enter a #ChannelName">
+            <button class="primary" onclick="abortButton()"><i class="fa fa-times"></i> Abort</button>
         <span id="channel-name">#Art</span>
         <small id="channel-location">by <strong>cheeses.yard.applies</strong></small>
         <!-- #7 #icns #str: star is now font-awesome -->
-        <i class="fa fa-star" onclick="star()"></i>
+        <i id="channel-star" class="fa fa-star" onclick="star()"></i>
     </h1>
 
     <div id="messages">
@@ -176,7 +178,8 @@
                For #real, it also gets an id -->
         <input type="text" placeholder="Message..." maxlength="140" id="message">
         <!-- #8 #message #send requires a button -->
-        <button class="accent" onclick="sendMessage()"><i class="fa fa-arrow-right"></i></button>
+        <button class="accent" id="arrow-button" onclick="sendMessage()"><i class="fa fa-arrow-right"></i></button>
+        <button class="accent" id="create-button" onclick="createButton()">Create</button>
     </div>
 </div>
 
